@@ -42,7 +42,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
-      - "3310:3306"
+      - "3312:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootsecret}
       MYSQL_DATABASE: ${DB_NAME:-wordpress}
@@ -65,7 +65,7 @@ services:
       - ./bedrock/web/app/themes/sage:/app
       - /app/node_modules
     ports:
-      - "5173:5173"
+      - "5183:5173"
     command: npm run dev -- --host 0.0.0.0
     networks:
       - web
