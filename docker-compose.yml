@@ -1,0 +1,80 @@
+services:
+  # WordPress (PHP-FPM + Nginx)
+  wordpress:
+    build:
+      context: .
+      dockerfile: docker/wordpress/Dockerfile
+      target: development
+    volumes:
+      - ./bedrock:/var/www/html
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - HOST_UID=${HOST_UID:-1000}
+      - HOST_GID=${HOST_GID:-1000}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=mysql
+      - WP_ENV=${WP_ENV:-development}
+      - WP_HOME=${WP_HOME}
+      - WP_SITEURL=${WP_SITEURL}
+    networks:
+      - web
+      - internal
+    labels:
+      - "traefik.enable=true"
+      # HTTP Router (redirects to HTTPS via Traefik global config)
+      - "traefik.http.routers.ciwg-roots-sage-wordpress.rule=Host(`${DOMAIN:-ciwg-roots-sage.localhost}`)"
+      - "traefik.http.routers.ciwg-roots-sage-wordpress.entrypoints=web"
+      # HTTPS Router
+      - "traefik.http.routers.ciwg-roots-sage-wordpress-secure.rule=Host(`${DOMAIN:-ciwg-roots-sage.localhost}`)"
+      - "traefik.http.routers.ciwg-roots-sage-wordpress-secure.entrypoints=websecure"
+      - "traefik.http.routers.ciwg-roots-sage-wordpress-secure.tls=true"
+      # Service Configuration
+      - "traefik.http.services.ciwg-roots-sage-wordpress.loadbalancer.server.port=80"
+      - "traefik.docker.network=web"
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3310:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootsecret}
+      MYSQL_DATABASE: ${DB_NAME:-wordpress}
+      MYSQL_USER: ${DB_USER:-wordpress}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootsecret}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - internal
+
+  # Node (Vite Dev Server for Sage)
+  node:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    volumes:
+      - ./bedrock/web/app/themes/sage:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host 0.0.0.0
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+  internal:
+    driver: bridge
+
+volumes:
+  mysql_data:

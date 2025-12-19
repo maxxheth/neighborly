@@ -1,0 +1,36 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+/bedrock/vendor/
+/bedrock/web/wp/
+/bedrock/web/app/themes/sage/node_modules/
+/bedrock/web/app/themes/sage/public/build/
+
+# Uploads (optional - uncomment to ignore)
+# /bedrock/web/app/uploads/
+
+# Docker volumes
+mysql_data/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Backup files
+*.sql
+*.sql.gz
+
+# Cache
+.cache/
