@@ -44,7 +44,7 @@ export default defineConfig({
     cors: true,
     hmr: {
       host: 'localhost',
-      port: 5173,
+      port: 5173,  // External Docker port mapping
     },
   },
 })

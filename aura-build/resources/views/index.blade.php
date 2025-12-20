@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     {{-- Include the individual page sections (partials) --}}
@@ -22,7 +22,7 @@
 {{-- Push the page-specific JavaScript for the mobile menu to the 'scripts' stack --}}
 @push('footer_scripts')
 
-\u003cscript id="scroll-animation-script" class=""\u003e
+<script id="scroll-animation-script" class="">
       (function() {
         // Add scroll-animate class to content sections
         const sectionsToAnimate = [
@@ -30,20 +30,20 @@
           'section:first-of-type .max-w-3xl',
           // Services section
           'section.bg-slate-50 .text-center.max-w-3xl',
-          'section.bg-slate-50 .grid.grid-cols-2 \u003e div',
+          'section.bg-slate-50 .grid.grid-cols-2 > div',
           // Local Experts section
           'section.bg-white .text-center.max-w-3xl',
-          'section.bg-white .grid.lg\\:grid-cols-2 \u003e div',
+          'section.bg-white .grid.lg\\:grid-cols-2 > div',
           // Done Right Promise section
-          'section.bg-white .grid.lg\\:grid-cols-2 \u003e div',
+          'section.bg-white .grid.lg\\:grid-cols-2 > div',
           // How It Works section
           'section.bg-slate-50 .text-center.max-w-3xl',
-          'section.bg-slate-50 .grid.md\\:grid-cols-3 \u003e div',
+          'section.bg-slate-50 .grid.md\\:grid-cols-3 > div',
           // Family of Brands section
           'section.bg-white .text-center.max-w-4xl',
-          'section.bg-white .grid.grid-cols-3 \u003e div',
+          'section.bg-white .grid.grid-cols-3 > div',
           // Download App section
-          'section.bg-gradient-to-br.from-blue-600 .grid.lg\\:grid-cols-2 \u003e div',
+          'section.bg-gradient-to-br.from-blue-600 .grid.lg\\:grid-cols-2 > div',
           // Seasonal Content section
           'section.bg-gradient-to-br.from-yellow-400 .text-center',
           // Testimonials section
@@ -63,14 +63,14 @@
           });
 
           // Animate grid items
-          const gridItems = section.querySelectorAll('.grid \u003e div');
+          const gridItems = section.querySelectorAll('.grid > div');
           gridItems.forEach(function(el, i) {
             el.classList.add('scroll-animate');
             el.style.transitionDelay = (i * 50) + 'ms';
           });
 
           // Animate two-column layouts
-          const twoColItems = section.querySelectorAll('.grid.lg\\:grid-cols-2 \u003e div, .grid.lg\\:gap-16 \u003e div');
+          const twoColItems = section.querySelectorAll('.grid.lg\\:grid-cols-2 > div, .grid.lg\\:gap-16 > div');
           twoColItems.forEach(function(el, i) {
             el.classList.add('scroll-animate');
             el.style.transitionDelay = (i * 100) + 'ms';
@@ -94,9 +94,9 @@
           observer.observe(el);
         });
       })();
-    \u003c/script\u003e
+    </script>
 
-    \u003cscript id="hero-stagger-animation"\u003e
+    <script id="hero-stagger-animation">
       (function() {
         // Wait for page load then trigger animations
         window.addEventListener('load', function() {
@@ -128,6 +128,6 @@
           }, 100);
         });
       })();
-    \u003c/script\u003e
+    </script>
 
 @endpush

@@ -34,7 +34,7 @@
         <div class="sm:px-6 sm:py-4 bg-white/90 max-w-7xl border-slate-200 border rounded-full mr-auto ml-auto pt-3 pr-4 pb-3 pl-4 shadow-lg backdrop-blur-md">
         <div class="flex items-center justify-between">
             <a href="/" class="flex items-center gap-2">
-            <img src="@asset('images/logo.svg')" alt="Neighborly Logo" class="h-8 w-auto">
+            <img src="{{ asset('images/logo.svg') }}" alt="Neighborly Logo" class="h-8 w-auto">
             </a>
 
             <div class="hidden lg:flex gap-8 items-center">

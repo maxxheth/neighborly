@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     @php(do_action('get_header'))
     @php(wp_head())
 
@@ -22,12 +23,6 @@
       <main id="main" class="main">
         @yield('content')
       </main>
-
-      @hasSection('sidebar')
-        <aside class="sidebar">
-          @yield('sidebar')
-        </aside>
-      @endif
 
       @include('sections.footer')
     </div>

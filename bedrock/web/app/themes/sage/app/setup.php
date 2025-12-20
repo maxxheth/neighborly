@@ -153,3 +153,33 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+/**
+ * Disable WordPress global styles.
+ * Prevents WordPress from injecting global-styles-inline-css with unwanted rules.
+ *
+ * @return void
+ */
+add_action('wp_enqueue_scripts', function () {
+    // Remove global styles
+    wp_dequeue_style('global-styles');
+    wp_deregister_style('global-styles');
+    
+    // Remove core block library styles
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+}, 100);
+
+/**
+ * Disable global styles SVG filters.
+ *
+ * @return void
+ */
+add_filter('wp_theme_json_get_style_nodes', '__return_empty_array');
+
+/**
+ * Disable global styles output.
+ *
+ * @return void
+ */
+add_filter('wp_get_global_stylesheet', '__return_empty_string');

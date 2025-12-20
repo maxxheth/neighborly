@@ -46,6 +46,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
 # Ensure www-data owns the web directory
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
 

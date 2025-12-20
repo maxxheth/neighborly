@@ -40,7 +40,7 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
     ports:
       - "3312:3306"
     environment:
@@ -65,7 +65,7 @@ services:
       - ./bedrock/web/app/themes/sage:/app
       - /app/node_modules
     ports:
-      - "5183:5173"
+      - "5173:5173"
     command: npm run dev -- --host 0.0.0.0
     networks:
       - web

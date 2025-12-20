@@ -7,7 +7,7 @@
             <div class="lg:col-span-1">
                 <div class="mb-6">
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="@asset('images/logo-white.svg')" alt="Neighborly Logo" class="h-8 w-auto">
+                        <img src="{{ asset('images/logo-white.svg') }}" alt="Neighborly Logo" class="h-8 w-auto">
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         Your hub for trusted home services. Find local experts for
