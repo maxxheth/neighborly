@@ -7,11 +7,11 @@
   <div class="max-w-3xl mx-auto text-center">
     <div class="inline-block mb-4 px-4 py-2 bg-blue-600/10 rounded-full transition-all duration-[600ms] ease-out" style="animation: fadeSlideUp 600ms ease-out forwards;">
       <span class="text-blue-600 text-sm font-medium">
-        Home Services Made Simple
+        {{ $hero_subheading }}
       </span>
     </div>
-    <h1 class="sm:text-5xl md:text-6xl lg:text-7xl leading-tight transition-all duration-[600ms] ease-out text-4xl font-semibold text-slate-900 tracking-tight mb-6" style="animation: 600ms ease-out 0s 1 normal forwards running fadeSlideUp">Hi, Neighbor!
-Need a hand around the house?</h1>
+    <h1 class="sm:text-5xl md:text-6xl lg:text-7xl leading-tight transition-all duration-[600ms] ease-out text-4xl font-semibold text-slate-900 tracking-tight mb-6" style="animation: 600ms ease-out 0s 1 normal forwards running fadeSlideUp">{{ $hero_heading }}<br>
+{{ $hero_heading_line2 }}</h1>
     <p class="text-lg sm:text-xl md:text-2xl text-slate-600 mb-8 leading-relaxed transition-all duration-[600ms] ease-out" style="animation: fadeSlideUp 600ms ease-out 200ms forwards;">
       Find trusted local experts for plumbing, electrical, HVAC, cleaning,
       and more—all backed by our Done Right Promise®.

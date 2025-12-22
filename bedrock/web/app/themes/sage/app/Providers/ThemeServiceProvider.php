@@ -24,5 +24,8 @@ class ThemeServiceProvider extends SageServiceProvider
     public function boot()
     {
         parent::boot();
+        
+        // Load ACF field groups
+        require_once get_theme_file_path('app/fields.php');
     }
 }
